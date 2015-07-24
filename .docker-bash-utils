@@ -1,0 +1,15 @@
+alias dm=docker-machine
+function dmu() {
+    if [[ ! $1 ]]; then
+        DM_NAME=docker-vm
+    else
+        DM_NAME=$1
+    fi
+    if [[ $1 =~ swarm ]] ; then
+	DM_OPT="--swarm"
+    else
+        DM_OPT=""
+    fi
+    eval $(docker-machine env $DM_OPT "$DM_NAME")
+}
+
